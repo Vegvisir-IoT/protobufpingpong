@@ -1,0 +1,69 @@
+syntax = "proto3";
+package protobufpingpong;
+
+// Messages about professors, countries, and conferences
+message Professor {
+    string name = 1;
+    int32 office = 2;
+    string email = 3;
+
+    enum AppointmentType {
+        ASSISTANT = 0;
+        ASSOCIATE = 1;
+        FULL = 2;
+    }
+
+    AppointmentType appointment = 4;
+}
+
+message Department {
+    repeated Professor professors = 1;
+}
+
+message Country {
+    string name = 1;
+    string language = 2;
+    int32 population = 3;
+}
+
+message Continent {
+    repeated Country states = 1;
+}
+
+message Conference {
+    string name = 1;
+    string location = 2;
+    int32 fee = 3;
+    string deadline = 4;
+
+    enum Track {
+        SINGLETRACK = 0;
+        TWOTRACK = 1;
+    }
+
+    Track track = 5;
+}
+
+message ACM {
+    repeated Conference events = 1;
+}
+
+message SearchRequest {
+    string target = 1;
+
+    enum QueryType {
+        DEPARTMENT = 0;
+        COUNTRY = 1;
+        CONFERENCE = 2;
+    }
+
+    QueryType querytype = 2;
+}
+
+message SearchResponse {
+    oneof responses {
+        Department faculty = 5;
+        Continent countries = 6;
+        ACM conferences = 7;
+    }
+}
