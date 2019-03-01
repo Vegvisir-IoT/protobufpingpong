@@ -19,7 +19,7 @@ HOST = '127.0.0.1'
 
 #@brief: A server processing client requests using protobuf
 class PingPongServer(object):
-    
+
     def __init__(self, port):
         """
             Initialize a server instance on the port.
@@ -27,7 +27,6 @@ class PingPongServer(object):
         """
         self.port = port
         self.server_socket = socket(AF_INET, SOCK_STREAM)
-        self.port = port
         print("Server to start on port %s, address %s" % (self.port, HOST))
         self.database = {}
 
